@@ -81,7 +81,7 @@ def haversine(lat1, lon1, lat2, lon2):
     C = 2 * atan2(sqrt(A), sqrt(1 - A))
     return R * C
 
-def UserSerach(request):
+def userSearch(request):
     if request.method=='POST':
        form=UserSearch(request.POST) 
        if form.is_valid():
