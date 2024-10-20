@@ -59,8 +59,8 @@ class ShopSearchView(APIView):
             distance = self.haversine_distance(latitude, longitude, shop.Latitude, shop.Longitude)
             ShopDistances.append({"name": shop.name, "address": shop.address, "distance": distance})
 
-        sorted_shops = sorted(ShopDistances, key=lambda x: x['distance'])
-        return Response(sorted_shops)
+        SortedShops = sorted(ShopDistances, key=lambda x: x['distance'])
+        return Response(SortedShops)
       
 def Registers(request):
     if request.method=='POST':
@@ -69,7 +69,7 @@ def Registers(request):
             clean_longitude(form.cleaned_data['Longitude'])
             clean_latitude(form.cleaned_data['Latitude'])
             form.save()
-            return render(request,'viewpage/Notify.html',{'notification':'succesfull'})
+            return render(request,'viewpage/Success.html',{'notification':'succesfull'})
     else:
         form=Shopform()
         return render(request,'viewpage/registerform.html',{'form':form})
